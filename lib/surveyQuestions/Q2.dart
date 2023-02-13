@@ -18,7 +18,7 @@ class Q2 extends StatelessWidget {
             textAlign: TextAlign.right,
             textScaleFactor: 1,
           ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.home),
               tooltip: 'Go to the homepage',
@@ -29,7 +29,7 @@ class Q2 extends StatelessWidget {
                     (Route<dynamic> route) => false);
               },
             ),
-          ],
+          ],*/
         ),
         body: Center(
             child: Column(children: <Widget>[
@@ -52,7 +52,7 @@ class Q2 extends StatelessWidget {
             title: const Text('Not at all'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(1),
+              User.addAnswer2(1),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q3()),
@@ -65,7 +65,7 @@ class Q2 extends StatelessWidget {
             title: const Text('Usually not'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(2),
+              User.addAnswer2(2),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q3()),
@@ -81,7 +81,7 @@ class Q2 extends StatelessWidget {
             title: const Text('Depends on the situation'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(3),
+              User.addAnswer2(3),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q3()),
@@ -94,7 +94,7 @@ class Q2 extends StatelessWidget {
             title: const Text('Usually'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(4),
+              User.addAnswer2(4),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q3()),
@@ -107,7 +107,7 @@ class Q2 extends StatelessWidget {
             title: const Text('Yes, all the time'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(5),
+              User.addAnswer2(5),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q3()),

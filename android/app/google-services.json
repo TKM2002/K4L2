@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "450570137274",
+    "project_id": "knight4love2",
+    "storage_bucket": "knight4love2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450570137274:android:9b17ec3a77a7d9256f1c83",
+        "android_client_info": {
+          "package_name": "com.example.knights4love2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450570137274-sn0rq9vv74sh9r2p8c533e5dh58ev5qn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-hC5hSJQxrOBf9kjCr_AJjw4s8SWXorY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450570137274-sn0rq9vv74sh9r2p8c533e5dh58ev5qn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

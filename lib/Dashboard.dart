@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'DashboardPages/Settings.dart';
 import 'DashboardPages/Messages.dart';
@@ -11,7 +12,6 @@ import 'User.dart';
 //https://api.flutter.dev/flutter/material/ListTile-class.html
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +74,7 @@ class Dashboard extends StatelessWidget {
             ),
           ),
         ),
+        const Spacer(flex: 1),
 
         //Third match
         Container(
@@ -174,7 +175,8 @@ class Dashboard extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const Settings()),
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
                       (Route<dynamic> route) => false);
                 },
               ),

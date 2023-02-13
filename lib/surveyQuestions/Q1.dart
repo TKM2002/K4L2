@@ -16,7 +16,7 @@ class Q1 extends StatelessWidget {
             textAlign: TextAlign.right,
             textScaleFactor: 1,
           ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.home),
               tooltip: 'Go to the homepage',
@@ -27,7 +27,7 @@ class Q1 extends StatelessWidget {
                     (Route<dynamic> route) => false);
               },
             ),
-          ],
+          ],*/
         ),
         body: Center(
             child: Column(children: <Widget>[
@@ -50,7 +50,7 @@ class Q1 extends StatelessWidget {
             title: const Text('Introverted'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(1),
+              User.addAnswer1(1),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q2()),
@@ -63,7 +63,7 @@ class Q1 extends StatelessWidget {
             title: const Text('Somewhat introverted'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(2),
+              User.addAnswer1(2),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q2()),
@@ -79,7 +79,7 @@ class Q1 extends StatelessWidget {
             title: const Text('Neutral'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(3),
+              User.addAnswer1(3),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q2()),
@@ -92,7 +92,7 @@ class Q1 extends StatelessWidget {
             title: const Text('Somewhat Extroverted'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(4),
+              User.addAnswer1(4),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q2()),
@@ -105,7 +105,7 @@ class Q1 extends StatelessWidget {
             title: const Text('Extroverted'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(5),
+              User.addAnswer1(5),
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => const Q2()),

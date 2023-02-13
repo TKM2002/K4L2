@@ -4,6 +4,8 @@ import 'package:knights4love2/User.dart';
 import 'package:knights4love2/Dashboard.dart';
 //import 'package:knights4love2/surveyQuestions/Q3.dart';
 
+//NEED ASYNC HERE AS WELL SO MATCHES LOAD IN ON FIRST VIEW OF DASHBOARD
+
 class Q3 extends StatelessWidget {
   const Q3({super.key});
 
@@ -17,7 +19,7 @@ class Q3 extends StatelessWidget {
             textAlign: TextAlign.right,
             textScaleFactor: 1,
           ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.home),
               tooltip: 'Go to the homepage',
@@ -28,7 +30,7 @@ class Q3 extends StatelessWidget {
                     (Route<dynamic> route) => false);
               },
             ),
-          ],
+          ],*/
         ),
         body: Center(
             child: Column(children: <Widget>[
@@ -51,7 +53,7 @@ class Q3 extends StatelessWidget {
             title: const Text('Not sentimental at all'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(1),
+              User.addAnswer3(1),
               User.addUser(),
               User.findMatches(),
               Navigator.pushAndRemoveUntil(
@@ -66,7 +68,7 @@ class Q3 extends StatelessWidget {
               title: const Text('A little bit'),
               trailing: const Icon(Icons.adjust),
               onTap: () => {
-                    User.addAnswer(2),
+                    User.addAnswer3(2),
                     User.addUser(),
                     User.findMatches(),
                     Navigator.pushAndRemoveUntil(
@@ -81,7 +83,7 @@ class Q3 extends StatelessWidget {
             title: const Text('Only when other people around me are'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(3),
+              User.addAnswer3(3),
               User.addUser(),
               User.findMatches(),
               Navigator.pushAndRemoveUntil(
@@ -96,7 +98,7 @@ class Q3 extends StatelessWidget {
             title: const Text('Fairly sentimental'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(4),
+              User.addAnswer3(4),
               User.addUser(),
               User.findMatches(),
               Navigator.pushAndRemoveUntil(
@@ -111,7 +113,7 @@ class Q3 extends StatelessWidget {
             title: const Text('Very sentimental'),
             trailing: const Icon(Icons.adjust),
             onTap: () => {
-              User.addAnswer(5),
+              User.addAnswer3(5),
               User.addUser(),
               User.findMatches(),
               Navigator.pushAndRemoveUntil(

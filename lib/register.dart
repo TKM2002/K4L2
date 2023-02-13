@@ -76,7 +76,9 @@ class Register extends StatelessWidget {
                   ),
                   onPressed: () {
                     if (password.text == confirmPassword.text &&
-                        User.checkRegister(username.text)) {
+                        User.checkRegister(username.text) &&
+                        username.text != "" &&
+                        password.text != "") {
                       User.setUsername(username.text);
                       User.setPassword(password.text);
                       Navigator.pushAndRemoveUntil(

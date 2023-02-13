@@ -3,10 +3,11 @@ import 'package:knights4love2/DashboardPages/Messages.dart';
 import 'package:knights4love2/DashboardPages/Profile.dart';
 import 'package:knights4love2/main.dart';
 import '../Dashboard.dart';
+import '../User.dart';
 
 //Login screen layout
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,12 @@ class Settings extends StatelessWidget {
                     const Color.fromARGB(255, 224, 203, 19)),
               ),
               onPressed: () {
+                User.Matches = [
+                  "No current matches",
+                  "No current matches",
+                  "No current Matches"
+                ];
+                User.compatibility = [-10000, -10000, -10000];
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => const Homepage()),

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:knights4love2/main.dart';
 import 'package:knights4love2/User.dart';
 import 'Dashboard.dart';
+import 'dart:async';
 
 //Login screen layout
 class Login extends StatelessWidget {
@@ -63,7 +66,11 @@ class Login extends StatelessWidget {
                   onPressed: () async {
                     //try using future builder
                     //https://stackoverflow.com/questions/57232397/flutter-future-dynamic-is-not-a-subtype-of-type-bool
-                    if (await User.checkLogin(username.text, password.text)) {
+
+                    List<String> identifiers =
+                        User.checkLogin(username.text, password.text);
+
+                    if (identifiers[0] != "" && identifiers[1] != "") {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

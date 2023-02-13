@@ -19,7 +19,7 @@ class User {
   static List<String> allPasswords = [];
 
   //Store important match data might need to move to db
-  static List<int> Answers = [];
+  static List<int> Answers = [0, 0, 0];
   static List<String> Matches = [
     "No current matches",
     "No current matches",
@@ -32,23 +32,24 @@ class User {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     //Make new user
-    users
-        .doc(username)
-        .set({
-          'username': username,
-          'password': password,
-          'firstname': firstName,
-          'lastname': lastName,
-          'age': age,
-          'description': description,
-          'gender': gender,
-          'Answer01': Answers[0],
-          'Answer02': Answers[1],
-          'Answer03': Answers[2]
-        })
+    users.doc(username).set({
+      'username': username,
+      'password': password,
+      'firstname': firstName,
+      'lastname': lastName,
+      'age': age,
+      'description': description,
+      'gender': gender,
+      'Answer01': Answers[0],
+      'Answer02': Answers[1],
+      'Answer03': Answers[2],
+      'Match01': "No current matches",
+      'Match02': "No current matches",
+      'Match03': "No current matches"
+    });
 //These next two lines can be commented out after testing
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+    //.then((value) => print("User Added"))
+    //.catchError((error) => print("Failed to add user: $error"));
   }
 
   //Calculate compatibility
@@ -62,21 +63,29 @@ class User {
     users.get().then((res) =>
         //loop through documents using res.docs.forEach
         res.docs.forEach((element) {
-          //sum up answers using math below
-          num one = 4 - (Answers[0] - element.get("Answer01"));
-          num two = 4 - (Answers[1] - element.get("Answer02"));
-          num three = 4 - (Answers[2] - element.get("Answer03"));
-          num sum = one + two + three;
-          //compare compatibility with previous highest compatibilities, if higher update both lists
-          if (sum > compatibility[0]) {
-            compatibility[0] = sum;
-            Matches[0] = element.get("username");
-          } else if (sum > compatibility[1]) {
-            compatibility[1] = sum;
-            Matches[1] = element.get("username");
-          } else if (sum > compatibility[2]) {
-            compatibility[2] = sum;
-            Matches[2] = element.get("username");
+          //Check if it is your own doc, make a doc reference for later use in math
+          if (element.get("username") != username) {
+            //sum up answers using math below
+            num one = 4 - (Answers[0] - element.get("Answer01")).abs();
+            num two = 4 - (Answers[1] - element.get("Answer02")).abs();
+            num three = 4 - (Answers[2] - element.get("Answer03")).abs();
+            num sum = one + two + three;
+            //compare compatibility with previous highest compatibilities, if higher update both lists
+            //Only match guy to girl, vice versa
+            //No repeat matches
+            if (sum > compatibility[0] && gender != element.get("gender")) {
+              compatibility[0] = sum;
+              Matches[0] = element.get("username");
+              //users.doc(username).set({'Match01': Matches[0]});
+            } else if (sum > compatibility[1] &&
+                gender != element.get("gender")) {
+              compatibility[1] = sum;
+              Matches[1] = element.get("username");
+            } else if (sum > compatibility[2] &&
+                gender != element.get("gender")) {
+              compatibility[2] = sum;
+              Matches[2] = element.get("username");
+            }
           }
         }));
   }
@@ -88,25 +97,25 @@ class User {
 
   // check username and password
 //search through db instead
-  static Future<bool> checkLogin(String username, String password) {
-    Future<bool> temp = false as Future<bool>;
+  static List<String> checkLogin(String username, String password) {
+    List<String> identifiers = ["", ""];
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    Future.delayed(
-        const Duration(seconds: 2),
-        () => users.get().then((res) => {
-              res.docs.forEach((element) {
-                print(element.get("username"));
-                print(username);
-                print(element.get("password"));
-                print(password);
-                if (element.get("username") == username &&
-                    element.get("password") == password) {
-                  temp = true as Future<bool>;
-                  print("TRUE");
-                }
-              })
-            }));
-    return temp;
+
+    users.get().then((res) => {
+          res.docs.forEach((element) {
+            //print(element.get("username"));
+            //print(username);
+            //print(element.get("password"));
+            //print(password);
+            if (element.get("username") == username &&
+                element.get("password") == password) {
+              identifiers.add(element.get("username"));
+              identifiers.add(element.get("password"));
+              print("TRUE");
+            }
+          })
+        });
+    return identifiers;
   }
 
   //Check if the username is already taken
@@ -149,14 +158,23 @@ class User {
     allPasswords.add(password);
   }
 
-  //Add question answers into list
-  static void addAnswer(int answer) {
-    Answers.add(answer);
-  }
-
   //Change Gender
   static void changeGender(String sex) {
     gender = sex;
+  }
+
+//Put this into database
+  //Add question answers into list
+  static void addAnswer1(int answer) {
+    Answers[0] = answer;
+  }
+
+  static void addAnswer2(int answer) {
+    Answers[1] = answer;
+  }
+
+  static void addAnswer3(int answer) {
+    Answers[2] = answer;
   }
 
   //Make a method to delete items from list

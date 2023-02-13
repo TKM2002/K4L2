@@ -2,6 +2,7 @@
 show updated info on the page. Maybe add picture later
 */
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:knights4love2/DashboardPages/Messages.dart';
 import 'package:knights4love2/DashboardPages/Settings.dart';
@@ -91,6 +92,15 @@ class Profile extends StatelessWidget {
               ),
               onPressed: () {
 //Put changes in db instead
+                CollectionReference users =
+                    FirebaseFirestore.instance.collection('users');
+                //this overwrites data instead of just changing the specified fields
+                /*users.doc(User.username).set({
+                  'firstname': firstName.text,
+                  'lastname': lastName.text,
+                  'age': age.text,
+                  'description': description.text,
+                });*/
                 User.setFirst(firstName.text);
                 User.setLast(lastName.text);
                 User.setAge(age.text);
@@ -154,7 +164,8 @@ class Profile extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const Settings()),
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
                       (Route<dynamic> route) => false);
                 },
               ),

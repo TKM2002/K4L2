@@ -4,7 +4,7 @@ import 'surveyQuestions/Q1.dart';
 import 'package:knights4love2/User.dart';
 
 class Survey extends StatelessWidget {
-  Survey({super.key});
+  const Survey({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Survey extends StatelessWidget {
             textAlign: TextAlign.right,
             textScaleFactor: 1,
           ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.home),
               tooltip: 'Go to the homepage',
@@ -32,7 +32,7 @@ class Survey extends StatelessWidget {
                     (Route<dynamic> route) => false);
               },
             ),
-          ],
+          ],*/
         ),
         body: Center(
             child: Column(children: <Widget>[
@@ -141,15 +141,19 @@ class Survey extends StatelessWidget {
                   const Color.fromARGB(255, 224, 203, 19)),
             ),
             onPressed: () {
-//Make sure all fields are filled in
-              User.setFirst(firstName.text);
-              User.setLast(lastName.text);
-              User.setAge(age.text);
-              User.setDesc(description.text);
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q1()),
-                  (Route<dynamic> route) => false);
+              if (firstName.text != "" &&
+                  lastName.text != "" &&
+                  age.text != "" &&
+                  User.gender != "") {
+                User.setFirst(firstName.text);
+                User.setLast(lastName.text);
+                User.setAge(age.text);
+                User.setDesc(description.text);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q1()),
+                    (Route<dynamic> route) => false);
+              }
             },
             child: const Text(
               'Next',

@@ -95,7 +95,8 @@ class _MessageState extends State<Messages> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const Settings()),
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
                       (Route<dynamic> route) => false);
                 },
               ),

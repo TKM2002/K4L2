@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:knights4love2/User.dart';
-import 'Q3.dart';
+import 'Q14.dart';
 
-class Q2 extends StatelessWidget {
-  const Q2({super.key});
+class Q13 extends StatelessWidget {
+  const Q13({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Q2 extends StatelessWidget {
             child: Column(children: <Widget>[
               //QUESTION TEXT
               const Text(
-                'I find myself being open to new things',
+                'I am looking for a long-term relationship',
                 textAlign: TextAlign.center,
                 textScaleFactor: 3,
               ),
@@ -31,10 +31,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Strongly Disagree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(1),
+                  User.addAnswer13(1),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -44,10 +44,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Mostly Disagree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(2),
+                  User.addAnswer13(2),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -57,10 +57,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Somewhat Disagree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(3),
+                  User.addAnswer13(3),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -70,10 +70,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Neither Agree/Disagree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(4),
+                  User.addAnswer13(4),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -83,10 +83,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Somewhat Agree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(5),
+                  User.addAnswer13(5),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -96,10 +96,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Mostly Agree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(6),
+                  User.addAnswer13(6),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),
@@ -109,10 +109,10 @@ class Q2 extends StatelessWidget {
                 title: const Text('Strongly Agree'),
                 trailing: const Icon(Icons.adjust),
                 onTap: () => {
-                  User.addAnswer2(7),
+                  User.addAnswer13(7),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Q3()),
+                    MaterialPageRoute(builder: (context) => const Q14()),
                   )
                 },
               ),

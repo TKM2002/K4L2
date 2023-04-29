@@ -1,6 +1,4 @@
-/*
-Use list tile for chats, put several icons in and show name
- */
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:knights4love2/DashboardPages/ChatList.dart';
 import 'package:knights4love2/DashboardPages/MessageUserTemplate.dart';
@@ -18,17 +16,14 @@ class Messages extends StatefulWidget {
 }
 
 class _MessageState extends State<Messages> {
-  List<MessageUsers> users = [
-    MessageUsers(firstName: User.firstName, lastName: User.lastName)
-  ];
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Messages'),
         centerTitle: true,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(children: <Widget>[
           //Chats
           //https://www.freecodecamp.org/news/build-a-chat-app-ui-with-flutter/
@@ -36,12 +31,15 @@ class _MessageState extends State<Messages> {
 
           ListView.builder(
             shrinkWrap: true,
-            itemCount: users.length,
+            itemCount: User.messageSlots.length,
             itemBuilder: (context, index) {
               return ChatList(
-                firstName: users[index].firstName,
-                lastName: users[index].lastName,
-              );
+                  firstName: User.messageSlots[index].firstName,
+                  lastName: User.messageSlots[index].lastName,
+                  url: User.messageSlots[index]
+                      .url /*,
+                  percent: User.messageSlots[index].percent*/
+                  );
             },
           ),
         ]),
@@ -105,7 +103,6 @@ class _MessageState extends State<Messages> {
     );
   }
 }
-
 
 //https://blog.logrocket.com/how-to-migrate-a-flutter-mobile-app-to-the-web/
 //convert to web and make database

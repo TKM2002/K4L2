@@ -1,12 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'DashboardPages/Settings.dart';
 import 'DashboardPages/Messages.dart';
 import 'DashboardPages/Profile.dart';
 import 'User.dart';
-
-//Dashboard screen layout
-//Needs to check if login is successful, if not dont change pages, if so then go to survey
 
 //Create question style option to make adding new questions easy, use this site
 //https://api.flutter.dev/flutter/material/ListTile-class.html
@@ -30,64 +26,91 @@ class Dashboard extends StatelessWidget {
         ),
 
 //Put actual matches in here, show picture, name, and percent match
+//Keep the matches subcollection ordered by percent, load in top matches
+//but keep all message convos up
+
         //your top matches
-        Container(
-          padding: const EdgeInsets.all(10),
-          color: const Color.fromARGB(255, 180, 17, 17),
-          child: const Text(
-            'Your top matches',
-            textScaleFactor: 1.5,
-            style: TextStyle(
-              color: Color.fromARGB(255, 224, 203, 19),
+        TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 180, 17, 17)),
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 224, 203, 19)),
             ),
-          ),
-        ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Dashboard()),
+                  (Route<dynamic> route) => false);
+            },
+            child: const Text(
+              "Load your newest matches",
+              textScaleFactor: 2,
+            )),
         const Spacer(
           flex: 1,
         ),
 
         //Top match
-        Container(
-          padding: const EdgeInsets.all(10),
-          color: const Color.fromARGB(255, 180, 17, 17),
-          child: Text(
-            User.Matches[0],
-            textScaleFactor: 1.5,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 224, 203, 19),
+        TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 180, 17, 17)),
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 224, 203, 19)),
             ),
-          ),
-        ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Messages()),
+                  (Route<dynamic> route) => false);
+            },
+            child: Text(
+              User.Matches[0],
+              textScaleFactor: 1.5,
+            )),
         const Spacer(
           flex: 1,
         ),
 
         //Second match
-        Container(
-          padding: const EdgeInsets.all(10),
-          color: const Color.fromARGB(255, 180, 17, 17),
-          child: Text(
-            User.Matches[1],
-            textScaleFactor: 1.5,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 224, 203, 19),
+        TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 180, 17, 17)),
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 224, 203, 19)),
             ),
-          ),
-        ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Messages()),
+                  (Route<dynamic> route) => false);
+            },
+            child: Text(
+              User.Matches[1],
+              textScaleFactor: 1.5,
+            )),
         const Spacer(flex: 1),
 
         //Third match
-        Container(
-          padding: const EdgeInsets.all(10),
-          color: const Color.fromARGB(255, 180, 17, 17),
-          child: Text(
-            User.Matches[2],
-            textScaleFactor: 1.5,
-            style: const TextStyle(
-              color: Color.fromARGB(255, 224, 203, 19),
+        TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 180, 17, 17)),
+              foregroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 224, 203, 19)),
             ),
-          ),
-        ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Messages()),
+                  (Route<dynamic> route) => false);
+            },
+            child: Text(
+              User.Matches[2],
+              textScaleFactor: 1.5,
+            )),
 
         //Put in buttons that go to chats
 
@@ -115,11 +138,11 @@ class Dashboard extends StatelessWidget {
         ),
         const Spacer(flex: 1),
         const Text(
-          'Uknighted and Knightengals at 7:30 in the CFAC',
+          'The Curious Savage by Calvin Theater Company',
           textScaleFactor: 1.2,
         ),
         const Text(
-          'Recital Hall December 7th',
+          'Gezon Auditorium March 24/25',
           textScaleFactor: 1.2,
         ),
 

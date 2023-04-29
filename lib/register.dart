@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knights4love2/Survey.dart';
 import 'package:knights4love2/User.dart';
+import 'package:knights4love2/main.dart';
 
 //Register screen layout
 class Register extends StatelessWidget {
@@ -14,8 +15,8 @@ class Register extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Register'),
-          titleSpacing: 110,
         ),
         body: Center(
           child: Column(children: <Widget>[
@@ -76,7 +77,7 @@ class Register extends StatelessWidget {
                   ),
                   onPressed: () {
                     if (password.text == confirmPassword.text &&
-                        User.checkRegister(username.text) &&
+                        !Homepage.user.contains(username.text) &&
                         username.text != "" &&
                         password.text != "") {
                       User.setUsername(username.text);
@@ -87,6 +88,7 @@ class Register extends StatelessWidget {
                           (Route<dynamic> route) => false);
                     } else {
                       //Put error message, "that username is taken please choose a different one"
+                      print("Bad registration");
                     }
                   },
                   child: const Text(

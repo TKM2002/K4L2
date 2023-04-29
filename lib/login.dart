@@ -1,10 +1,10 @@
-import 'dart:io';
+import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:knights4love2/main.dart';
 import 'package:knights4love2/User.dart';
 import 'Dashboard.dart';
-import 'dart:async';
 
 //Login screen layout
 class Login extends StatelessWidget {
@@ -17,8 +17,8 @@ class Login extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Login'),
-          titleSpacing: 110,
         ),
         body: Center(
           child: Column(children: <Widget>[
@@ -63,14 +63,33 @@ class Login extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(255, 224, 203, 19)),
                   ),
-                  onPressed: () async {
-                    //try using future builder
-                    //https://stackoverflow.com/questions/57232397/flutter-future-dynamic-is-not-a-subtype-of-type-bool
+                  onPressed: () {
+                    //Set up user variables in user class
+                    //Might need to put in other stuff like answers
+                    User.username = username.text;
+                    if (Homepage.user.contains(username.text) &&
+                        Homepage.pass[Homepage.user.indexOf(username.text)] ==
+                            password.text) {
+                      DocumentReference user = FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(username.text);
+                      user.get().then((element) => {
+                            User.setFirst(element.get("firstname")),
+                            User.setLast(element.get("lastname")),
+                            User.setAge(element.get("age")),
+                            User.setDesc(element.get("description")),
+                            User.setPic(element.get("picURL"))
+                          });
+                      user.collection('matches').doc('Match01').get().then(
+                          (value) => User.Matches[0] = value.get('username'));
+                      user.collection('matches').doc('Match02').get().then(
+                          (value) => User.Matches[1] = value.get('username'));
+                      user.collection('matches').doc('Match03').get().then(
+                          (value) => User.Matches[2] = value.get('username'));
+                      final timer = Timer(const Duration(seconds: 2), () {
+                        User.addMessageSlots();
+                      });
 
-                    List<String> identifiers =
-                        User.checkLogin(username.text, password.text);
-
-                    if (identifiers[0] != "" && identifiers[1] != "") {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

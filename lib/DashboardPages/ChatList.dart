@@ -1,11 +1,21 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../User.dart';
 import 'Chat.dart';
 
 class ChatList extends StatefulWidget {
   String firstName = "";
   String lastName = "";
-  ChatList({required this.firstName, required this.lastName});
+  String percent = "";
+  String url = "";
+
+  ChatList(
+      {required this.firstName,
+      required this.lastName,
+      required this.url /*, required this.percent*/});
   @override
   _ChatListState createState() => _ChatListState();
 }
@@ -14,10 +24,29 @@ class _ChatListState extends State<ChatList> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        //Pass match name into chat, set user class variable curMatchPage,
+        //stores the name of the match who we need to access
+        User.curMatchPage = widget.firstName;
+
+        //Empty chat list
+        Chat.messageList = [];
+
+        //Load in current database messages
+        await Chat.loadMessages();
+
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return Chat();
         }));
+        /*users
+            .doc(User.curMatchPage)
+            .collection('messages')
+            .doc(User.username)
+            .collection('matchConvo')
+            .get()
+            .then((value) => value.docs.forEach((element) {
+                  Chat.addMessage(element.get('message'), element.get('type'));
+                }));*/
       },
       child: Container(
         padding:
@@ -27,8 +56,8 @@ class _ChatListState extends State<ChatList> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  const CircleAvatar(
-                    //backgroundImage: NetworkImage(widget.imageUrl),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(widget.url),
                     maxRadius: 30,
                   ),
                   const SizedBox(
@@ -59,14 +88,13 @@ class _ChatListState extends State<ChatList> {
                 ],
               ),
             ),
-            /*Text(
-              //Replace with something cooler, maybe age or chat notification?
-              //If not cooler, comment out for now
-              widget.firstName,
+            Text(
+              //Percent match baby they'll never know
+              widget.percent,
               style: const TextStyle(
                 fontSize: 12,
               ),
-            ),*/
+            ),
           ],
         ),
       ),

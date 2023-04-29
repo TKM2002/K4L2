@@ -3,7 +3,7 @@
 
 //Run from web with 'flutter run -d chrome'
 
-//Before deploying, must run flutter build web or it won't update
+//Before deploying, must run flutter build web or it won't update, then change the database rules
 
 //firebase packages needed to connect to database
 //Documentation site for firebase
@@ -15,7 +15,6 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
-import 'User.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,10 +48,12 @@ class MyApp extends StatelessWidget {
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
-  @override
+  static List<Object> user = [];
+  static List<String> pass = [];
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'Welcome to Knights 4 Love',
           textAlign: TextAlign.left,
@@ -79,6 +80,13 @@ class Homepage extends StatelessWidget {
                         const Color.fromARGB(255, 224, 203, 19)),
                   ),
                   onPressed: () {
+                    //Get a local list of all usernames and passwords
+                    CollectionReference users =
+                        FirebaseFirestore.instance.collection('users');
+                    users.get().then((res) => res.docs.forEach((element) {
+                          user.add(element.get("username"));
+                          pass.add(element.get("password"));
+                        }));
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const Login()));
                   },
@@ -101,6 +109,12 @@ class Homepage extends StatelessWidget {
                         const Color.fromARGB(255, 224, 203, 19)),
                   ),
                   onPressed: () {
+                    //Get a local list of all usernames
+                    CollectionReference users =
+                        FirebaseFirestore.instance.collection('users');
+                    users.get().then((res) => res.docs.forEach((element) {
+                          user.add(element.get("username"));
+                        }));
                     Navigator.push(
                         context,
                         MaterialPageRoute(

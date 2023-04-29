@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:knights4love2/DashboardPages/Messages.dart';
 import 'package:knights4love2/DashboardPages/Profile.dart';
@@ -32,14 +33,19 @@ class SettingsPage extends StatelessWidget {
               ),
               onPressed: () {
                 User.Matches = [
-                  "No current matches",
-                  "No current matches",
-                  "No current Matches"
+                  "No current match",
+                  "No current match",
+                  "No current match"
                 ];
-                User.compatibility = [-10000, -10000, -10000];
+                User.compatibility = [-10.0, -10.0, -10.0];
+                print(User.messageSlots);
+                print('before delete');
+                User.messageSlots = [];
+                print(User.messageSlots);
+                print('after delete');
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const Homepage()),
+                    MaterialPageRoute(builder: (context) => Homepage()),
                     (Route<dynamic> route) => false);
               },
               child: const Text(
@@ -49,6 +55,34 @@ class SettingsPage extends StatelessWidget {
           const Spacer(
             flex: 1,
           ),
+
+          //Delete Account
+          /*Remove User.username from all docs in matches subcollection
+          TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromARGB(255, 180, 17, 17)),
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromARGB(255, 224, 203, 19)),
+              ),
+              onPressed: () {
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(User.username)
+                    .delete();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                    (Route<dynamic> route) => false);
+              },
+              child: const Text(
+                'Delete Account',
+                textScaleFactor: 2.5,
+              )),
+          const Spacer(
+            flex: 1,
+          ),
+          */
         ]),
       ),
       bottomNavigationBar: BottomAppBar(

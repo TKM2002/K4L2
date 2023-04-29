@@ -12,7 +12,7 @@ class Q1 extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            'Survey',
+            'Survey q1',
             textAlign: TextAlign.right,
             textScaleFactor: 1,
           ),
@@ -29,92 +29,107 @@ class Q1 extends StatelessWidget {
             ),
           ],*/
         ),
-        body: Center(
+        body: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(0, 75, 0, 50),
             child: Column(children: <Widget>[
-          const Spacer(
-            flex: 1,
-          ),
+              //QUESTION TEXT
+              const Text(
+                'I would describe myself as extraverted',
+                textAlign: TextAlign.center,
+                textScaleFactor: 3,
+              ),
 
-          //QUESTION TEXT
-          const Text(
-            'Would you describe yourself as an introvert or extrovert?',
-            textAlign: TextAlign.center,
-            textScaleFactor: 3,
-          ),
-          const Spacer(
-            flex: 1,
-          ),
+              //ANSWER 1
+              ListTile(
+                title: const Text('Strongly Disagree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(1),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+              ),
 
-          //ANSWER 1
-          ListTile(
-            title: const Text('Introverted'),
-            trailing: const Icon(Icons.adjust),
-            onTap: () => {
-              User.addAnswer1(1),
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q2()),
-                  (Route<dynamic> route) => false)
-            },
-          ),
+              //ANSWER 2
+              ListTile(
+                title: const Text('Mostly Disagree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(2),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+                //tileColor: bool ? Colors.green : Colors.blue,
+                //selectedColor: Colors.green,
+                //selected: bool,
+              ),
 
-          //ANSWER 2
-          ListTile(
-            title: const Text('Somewhat introverted'),
-            trailing: const Icon(Icons.adjust),
-            onTap: () => {
-              User.addAnswer1(2),
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q2()),
-                  (Route<dynamic> route) => false)
-            },
-            //tileColor: bool ? Colors.green : Colors.blue,
-            //selectedColor: Colors.green,
-            //selected: bool,
-          ),
+              //ANSWER 3
+              ListTile(
+                title: const Text('Somewhat Disagree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(3),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+              ),
 
-          //ANSWER 3
-          ListTile(
-            title: const Text('Neutral'),
-            trailing: const Icon(Icons.adjust),
-            onTap: () => {
-              User.addAnswer1(3),
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q2()),
-                  (Route<dynamic> route) => false)
-            },
-          ),
+              //ANSWER 4
+              ListTile(
+                title: const Text('Neither Agree/Disagree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(4),
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Q2()))
+                },
+              ),
 
-          //ANSWER 4
-          ListTile(
-            title: const Text('Somewhat Extroverted'),
-            trailing: const Icon(Icons.adjust),
-            onTap: () => {
-              User.addAnswer1(4),
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q2()),
-                  (Route<dynamic> route) => false)
-            },
-          ),
+              //ANSWER 5
+              ListTile(
+                title: const Text('Somewhat Agree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(5),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+              ),
 
-          //ANSWER 5
-          ListTile(
-            title: const Text('Extroverted'),
-            trailing: const Icon(Icons.adjust),
-            onTap: () => {
-              User.addAnswer1(5),
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Q2()),
-                  (Route<dynamic> route) => false)
-            },
-          ),
-          const Spacer(
-            flex: 1,
-          ),
-        ])));
+              //ANSWER 6
+              ListTile(
+                title: const Text('Mostly Agree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(6),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+              ),
+
+              //ANSWER 7
+              ListTile(
+                title: const Text('Strongly Agree'),
+                trailing: const Icon(Icons.adjust),
+                onTap: () => {
+                  User.addAnswer1(7),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Q2()),
+                  )
+                },
+              ),
+            ])));
   }
 }

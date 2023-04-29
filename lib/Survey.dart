@@ -12,6 +12,7 @@ class Survey extends StatelessWidget {
     TextEditingController lastName = TextEditingController();
     TextEditingController age = TextEditingController();
     TextEditingController description = TextEditingController();
+    TextEditingController pic = TextEditingController();
 
     return Scaffold(
         appBar: AppBar(
@@ -34,135 +35,152 @@ class Survey extends StatelessWidget {
             ),
           ],*/
         ),
-        body: Center(
-            child: Column(children: <Widget>[
-          const Spacer(
-            flex: 4,
-          ),
-
-          //HEADING
-          const Text(
-            'Please fill out the following questions',
-            textAlign: TextAlign.center,
-            textScaleFactor: 3,
-          ),
-          const Spacer(
-            flex: 4,
-          ),
-
-          //FIRST NAME
-          TextField(
-            controller: firstName,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'First Name',
-            ),
-          ),
-          const Spacer(
-            flex: 1,
-          ),
-
-          //LAST NAME
-          TextField(
-            controller: lastName,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Last Name',
-            ),
-          ),
-          const Spacer(
-            flex: 1,
-          ),
-
-          //AGE
-          TextField(
-            controller: age,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Age',
-            ),
-          ),
-          const Spacer(
-            flex: 1,
-          ),
-
-          //DESCRIPTION
-          TextField(
-            controller: description,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Description',
-            ),
-          ),
-
-          const Spacer(flex: 4),
-
-          //GENDER
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(flex: 3),
-              TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 180, 17, 17)),
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 224, 203, 19)),
+        body: SingleChildScrollView(
+            child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height,
+                ),
+                child: Column(children: <Widget>[
+                  const Spacer(
+                    flex: 4,
                   ),
-                  //https://stackoverflow.com/questions/63371978/flutter-web-on-hover-how-to-change-flatbutton-text-color
-                  //Hover effects
-                  //onHover: const Color.fromARGB(255, 180, 17, 17),
-                  onPressed: (() => User.changeGender("Male")),
-                  child: const Text('Male')),
-              const Spacer(flex: 1),
-              TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 180, 17, 17)),
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 224, 203, 19)),
+
+                  //HEADING
+                  const Text(
+                    'Please fill out the following questions',
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 3,
                   ),
-                  onPressed: (() => User.changeGender("Female")),
-                  child: const Text('Female')),
-              const Spacer(flex: 3)
-            ],
-          ),
+                  const Spacer(
+                    flex: 4,
+                  ),
 
-          const Spacer(
-            flex: 4,
-          ),
+                  //FIRST NAME
+                  TextField(
+                    controller: firstName,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'First Name',
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
 
-          //NEXT
-          TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 180, 17, 17)),
-              foregroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 224, 203, 19)),
-            ),
-            onPressed: () {
-              if (firstName.text != "" &&
-                  lastName.text != "" &&
-                  age.text != "" &&
-                  User.gender != "") {
-                User.setFirst(firstName.text);
-                User.setLast(lastName.text);
-                User.setAge(age.text);
-                User.setDesc(description.text);
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Q1()),
-                    (Route<dynamic> route) => false);
-              }
-            },
-            child: const Text(
-              'Next',
-              textScaleFactor: 1.5,
-            ),
-          ),
-          const Spacer(
-            flex: 4,
-          )
-        ])));
+                  //LAST NAME
+                  TextField(
+                    controller: lastName,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Last Name',
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+
+                  //AGE
+                  TextField(
+                    controller: age,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Age',
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+
+                  //DESCRIPTION
+                  TextField(
+                    controller: description,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Description',
+                    ),
+                  ),
+                  const Spacer(flex: 1),
+                  //PICTURE
+                  TextField(
+                    controller: pic,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Picture URL',
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+
+                  const Spacer(flex: 2),
+
+                  //GENDER
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(flex: 3),
+                      TextButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 180, 17, 17)),
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 224, 203, 19)),
+                          ),
+                          //https://stackoverflow.com/questions/63371978/flutter-web-on-hover-how-to-change-flatbutton-text-color
+                          //Hover effects
+                          //onHover: const Color.fromARGB(255, 180, 17, 17),
+                          onPressed: (() => User.changeGender("Male")),
+                          child: const Text('Male')),
+                      const Spacer(flex: 4),
+                      TextButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 180, 17, 17)),
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 224, 203, 19)),
+                          ),
+                          onPressed: (() => User.changeGender("Female")),
+                          child: const Text('Female')),
+                      const Spacer(flex: 3)
+                    ],
+                  ),
+
+                  const Spacer(
+                    flex: 2,
+                  ),
+
+                  //NEXT
+                  TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 180, 17, 17)),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 224, 203, 19)),
+                    ),
+                    onPressed: () {
+                      if (firstName.text != "" &&
+                          lastName.text != "" &&
+                          age.text != "" &&
+                          User.gender != "") {
+                        User.setFirst(firstName.text);
+                        User.setLast(lastName.text);
+                        User.setAge(age.text);
+                        User.setDesc(description.text);
+                        User.setPic(pic.text);
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Q1()),
+                            (Route<dynamic> route) => false);
+                      }
+                    },
+                    child: const Text(
+                      'Next',
+                      textScaleFactor: 1.5,
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 8,
+                  )
+                ]))));
   }
 }
